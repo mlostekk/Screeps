@@ -1,6 +1,6 @@
 /// Factory that returns the correct role from the given
 
-import { Global } from "global";
+import { Global, RoleType } from "global";
 import { Builder } from "unit/builder";
 import { Harvester } from "unit/harvester";
 import { Upgrader } from "unit/upgrader";
@@ -12,11 +12,11 @@ export class Factory {
     /// Return the given unit depending on the creeps memory
     public static getUnitFrom(creep: Creep): BaseUnit {
         switch (creep.memory.role) {
-            case Global.Roles.harvester:
+            case RoleType.harvester:
                 return new Harvester(creep);
-            case Global.Roles.builder:
+            case RoleType.builder:
                 return new Builder(creep);
-            case Global.Roles.upgrader:
+            case RoleType.upgrader:
                 return new Upgrader(creep);
         }
         throw Error(`Unknown creep type found: "${creep.memory.role}"`);

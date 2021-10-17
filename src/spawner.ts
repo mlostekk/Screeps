@@ -1,4 +1,4 @@
-import { Global } from "global";
+import { Global, RoleType } from "global";
 
 export class Spawner {
 
@@ -65,7 +65,7 @@ export class Spawner {
         let harvesterIndex = this.memory.spawnIndex.harvester++;
         const harvesters = _.filter(
             Game.creeps,
-            (creep) => creep.memory.role == Global.Roles.harvester);
+            (creep) => creep.memory.role == RoleType.harvester);
         console.log('Harvesters: ' + harvesters.length);
 
         if (harvesters.length < Global.Amounts.harvester) {
@@ -86,7 +86,7 @@ export class Spawner {
         let builderIndex = this.memory.spawnIndex.builder++;
         const builders = _.filter(
             Game.creeps,
-            (creep) => creep.memory.role == Global.Roles.builder);
+            (creep) => creep.memory.role == RoleType.builder);
         console.log('Builders: ' + builders.length);
 
         if (builders.length < Global.Amounts.builder) {
@@ -107,7 +107,7 @@ export class Spawner {
         let upgraderIndex = this.memory.spawnIndex.upgrader++;
         const upgraders = _.filter(
             Game.creeps,
-            (creep) => creep.memory.role == Global.Roles.upgrader);
+            (creep) => creep.memory.role == RoleType.upgrader);
         console.log('Upgraders: ' + upgraders.length);
 
         if (upgraders.length < Global.Amounts.upgrader) {

@@ -44,6 +44,7 @@ export const loop = ErrorMapper.wrapLoop(() => {
   // SANITY CHECKS
   // TODO: extract those
   if (Memory.spawnIndex == undefined) {
+    console.log("Initializing spawn index memory")
     Memory.spawnIndex = {
       harvester: 0,
       builder: 0,
