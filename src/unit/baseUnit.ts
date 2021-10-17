@@ -1,12 +1,16 @@
+import { RoleType } from "global";
+
 export class BaseUnit {
     creep: Creep;
+    type: RoleType;
 
-    constructor(creep: Creep) {
+    constructor(creep: Creep, roleType: RoleType) {
         this.creep = creep;
+        this.type = roleType;
     }
 
     public process() {
-        console.error("Shall never be called");
+        throw Error("Shall never be called");
     }
 
     hasNoEnergy(): boolean {

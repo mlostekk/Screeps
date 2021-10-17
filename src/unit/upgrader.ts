@@ -1,9 +1,10 @@
+import { RoleType } from "global";
 import { BaseUnit } from "unit/baseUnit";
 
 export class Upgrader extends BaseUnit {
 
     constructor(creep: Creep) {
-        super(creep);
+        super(creep, RoleType.upgrader);
     }
 
     public process() {

@@ -1,9 +1,10 @@
+import { RoleType } from "global";
 import { BaseUnit } from "./baseUnit";
 
 export class Builder extends BaseUnit {
 
     constructor(creep: Creep) {
-        super(creep);
+        super(creep, RoleType.builder);
     }
 
     public process() {
@@ -22,7 +23,7 @@ export class Builder extends BaseUnit {
             if (targets.length) {
                 if (this.creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
                     this.creep.moveTo(targets[0], { visualizePathStyle: { stroke: '#ffffff' } });
-                }this.creep
+                } this.creep;
             }
         }
         else {

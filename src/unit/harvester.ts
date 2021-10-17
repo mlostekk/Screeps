@@ -1,10 +1,11 @@
-import { Global } from "global";
+import { Global, RoleType } from "global";
 import { BaseUnit } from "./baseUnit";
+import { idle } from "./strategy/idle";
 
 export class Harvester extends BaseUnit {
 
     constructor(creep: Creep) {
-        super(creep);
+        super(creep, RoleType.harvester);
     }
 
     public process() {
@@ -32,16 +33,8 @@ export class Harvester extends BaseUnit {
                     this.creep.moveTo(targets[0], { visualizePathStyle: { stroke: '#ffffff' } });
                 }
             } else {
-                // move harvester out of the way
-                const rendezvousFlags = this.creep.room
-                    .find(FIND_FLAGS)
-                    .filter((flag: Flag) => flag.name = Global.Flags.rendezvousHarvester);
-                if (rendezvousFlags.length >=0 ) {
-                    this.creep.say("💤")
-                    this.creep.moveTo(rendezvousFlags[0]);
-                } else {
-                    console.error(`No rendezvous for harversters found in room: ${this.creep.room}`)
-                }
+                // move to idle rendezvous
+                idle(this);
             }
         }
     }
