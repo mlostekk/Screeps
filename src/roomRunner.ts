@@ -21,6 +21,15 @@ export class RoomRunner {
         this.spawner = new Spawner(room, memory);
     }
     public run(): void {
+        // debug
+        if (this.memory.debug.room.energy) {
+            this.room.visual.text(
+                `⚡️: ${this.room.energyAvailable} / ${this.room.energyCapacityAvailable}`,
+                0,
+                1,
+                { align: 'left', opacity: 1 });
+        }
+
         // swaning
         this.spawner.spawnCreeps();
 

@@ -19,6 +19,11 @@ declare global {
     };
     uuid: number;
     log: any;
+    debug: {
+      room: {
+        energy: boolean;
+      };
+    };
   }
 
   interface CreepMemory {
@@ -44,11 +49,21 @@ export const loop = ErrorMapper.wrapLoop(() => {
   // SANITY CHECKS
   // TODO: extract those
   if (Memory.spawnIndex == undefined) {
-    console.log("Initializing spawn index memory")
+    console.log("Initializing spawn index memory");
     Memory.spawnIndex = {
       harvester: 0,
       builder: 0,
       upgrader: 0
+    };
+  }
+
+  if (Memory.debug == undefined ||
+    Memory.debug.room == undefined ||
+    Memory.debug.room.energy == undefined) {
+    Memory.debug = {
+      room: {
+        energy: true
+      }
     };
   }
 

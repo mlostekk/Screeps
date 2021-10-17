@@ -2,9 +2,9 @@ import { RoleType } from "global";
 import { BaseUnit } from "unit/baseUnit";
 
 const rendezvousFlagNames: { [RoleType: string]: string; } = {};
-rendezvousFlagNames[RoleType.harvester] = "harvester";
-rendezvousFlagNames[RoleType.builder] = "builder";
-rendezvousFlagNames[RoleType.upgrader] = "upgrader";
+rendezvousFlagNames[RoleType.harvester] = "RendezvousHarvester";
+rendezvousFlagNames[RoleType.builder] = "RendezvousBuilder";
+rendezvousFlagNames[RoleType.upgrader] = "RendezvousUpgrader";
 
 /// Trigger going into idle position, return true if
 /// entity goes idle, false if its not possible
@@ -24,6 +24,6 @@ export function idle(entity: BaseUnit): boolean {
         return true;
     }
     // no rendezvous flag found
-    console.error(`No rendezvous for harversters found in room: ${entity.creep.room}`);
+    console.log(`No rendezvous "${rendezvousFlagNames[entity.type]}" found in room: ${entity.creep.room}`);
     return false;
 }
