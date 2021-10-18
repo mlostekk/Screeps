@@ -90,3 +90,6 @@ $RECYCLE.BIN/
 
 # Windows shortcuts
 *.lnk
+
+# Coverage report
+coverage

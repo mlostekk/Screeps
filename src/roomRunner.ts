@@ -15,10 +15,11 @@ export class RoomRunner {
     /// Construction with dependencies
     constructor(
         room: Room,
-        memory: Memory) {
+        memory: Memory,
+        spawner: Spawner) {
         this.room = room;
         this.memory = memory;
-        this.spawner = new Spawner(room, memory);
+        this.spawner = spawner;
     }
     public run(): void {
         // debug

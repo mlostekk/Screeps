@@ -8,7 +8,7 @@ export const Global = {
     Amounts: {
         harvester: 2,
         builder: 2,
-        upgrader: 1
+        upgrader: 3
     },
     Flags: {
         rendezvousHarvester: "RendezvousHarvester",

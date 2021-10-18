@@ -1,3 +1,4 @@
+import { Spawner } from "spawner";
 import { ErrorMapper } from "utils/ErrorMapper";
 import { RoomRunner } from "./roomRunner";
 
@@ -78,7 +79,8 @@ export const loop = ErrorMapper.wrapLoop(() => {
   // Run all rooms
   for (const roomName in Game.rooms) {
     const room = Game.rooms[roomName] as Room;
-    const roomRunner = new RoomRunner(room, Memory);
+    const spawner = new Spawner(room, Memory);
+    const roomRunner = new RoomRunner(room, Memory, spawner);
     roomRunner.run();
   }
 });
