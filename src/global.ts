@@ -7,8 +7,8 @@ export enum RoleType {
 export const Global = {
     Amounts: {
         harvester: 2,
-        builder: 2,
-        upgrader: 3
+        builder: 1,
+        upgrader: 2
     },
     Flags: {
         rendezvousHarvester: "RendezvousHarvester",

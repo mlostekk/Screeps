@@ -98,70 +98,6 @@ export class Spawner {
         return false;
     }
 
-    // /// Spawn a harvester at the given structure
-    // private spawnHarvesterAt(spawn: StructureSpawn): boolean {
-    //     // current harvester index
-    //     let harvesterIndex = this.memory.spawnIndex.harvester++;
-    //     const harvesters = _.filter(
-    //         Game.creeps,
-    //         (creep) => creep.memory.role == RoleType.harvester);
-    //     console.log('Harvesters: ' + harvesters.length);
-
-    //     if (harvesters.length < Global.Amounts.harvester) {
-    //         var newName = 'Harvester ' + harvesterIndex;
-    //         console.log('Spawning new harvester: ' + newName);
-    //         spawn.spawnCreep(
-    //             [WORK, CARRY, MOVE, MOVE],
-    //             newName,
-    //             { memory: { role: 'harvester' } });
-    //         this.memory.spawnIndex.harvester = harvesterIndex;
-    //         return true;
-    //     }
-    //     return false;
-    // }
-
-    // private spawnBuilderAt(spawn: StructureSpawn): boolean {
-    //     // current builder index
-    //     let builderIndex = this.memory.spawnIndex.builder++;
-    //     const builders = _.filter(
-    //         Game.creeps,
-    //         (creep) => creep.memory.role == RoleType.builder);
-    //     console.log('Builders: ' + builders.length);
-
-    //     if (builders.length < Global.Amounts.builder) {
-    //         var newName = 'Builder ' + builderIndex;
-    //         console.log('Spawning new builder: ' + newName);
-    //         spawn.spawnCreep(
-    //             [WORK, CARRY, MOVE, MOVE],
-    //             newName,
-    //             { memory: { role: 'builder' } });
-    //         this.memory.spawnIndex.builder = builderIndex;
-    //         return true;
-    //     }
-    //     return false;
-    // }
-
-    // private spawnUpgraderAt(spawn: StructureSpawn): boolean {
-    //     // current upgrader index
-    //     let upgraderIndex = this.memory.spawnIndex.upgrader++;
-    //     const upgraders = _.filter(
-    //         Game.creeps,
-    //         (creep) => creep.memory.role == RoleType.upgrader);
-    //     console.log('Upgraders: ' + upgraders.length);
-
-    //     if (upgraders.length < Global.Amounts.upgrader) {
-    //         var newName = 'Upgrader ' + upgraderIndex;
-    //         console.log('Spawning new upgrader: ' + newName);
-    //         spawn.spawnCreep(
-    //             [WORK, CARRY, MOVE, MOVE],
-    //             newName,
-    //             { memory: { role: 'upgrader' } });
-    //         this.memory.spawnIndex.upgrader = upgraderIndex;
-    //         return true;
-    //     }
-    //     return false;
-    // }
-
     /// Get the body parts for a given type with a given limit
     /// Might return null if the energy limit does not allow a
     /// configuration
@@ -231,9 +167,9 @@ export class Spawner {
             case RoleType.harvester:
             case RoleType.builder:
             case RoleType.upgrader:
-                ratio[MOVE] = 3;
-                ratio[CARRY] = 2;
-                ratio[WORK] = 2;
+                ratio[MOVE] = 2;
+                ratio[CARRY] = 3;
+                ratio[WORK] = 3;
                 break;
         }
         return ratio;
