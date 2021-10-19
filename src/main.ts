@@ -16,6 +16,7 @@ declare global {
     spawnIndex: {
       harvester: number;
       builder: number;
+      repairer: number;
       upgrader: number;
     };
     uuid: number;
@@ -54,7 +55,8 @@ export const loop = ErrorMapper.wrapLoop(() => {
     Memory.spawnIndex = {
       harvester: 0,
       builder: 0,
-      upgrader: 0
+      upgrader: 0,
+      repairer: 0
     };
   }
 

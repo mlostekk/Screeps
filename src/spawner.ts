@@ -1,4 +1,5 @@
 import { Global, RoleType } from "global";
+import { any } from "lodash";
 
 /// Class that takes care of spawning the currently
 /// needed units
@@ -30,29 +31,24 @@ export class Spawner {
 
         // TODO: read up RENEWING CREEPS instead of building new ones
 
-        let harvesterSpawned = false;
-        let builderSpawned = false;
-        let upgraderSpawned = false;
-
+        let anythingSpawned = false;
         [RoleType.harvester,
         RoleType.builder,
-        RoleType.upgrader].forEach((type) => {
-            this.spawnType(type,
-                Global.Amounts[type],
-                this.room.energyAvailable,
-                spawn);
-        });
-        // // spawn harvester first
-        // harvesterSpawned = this.spawnHarvesterAt(spawn);
+        RoleType.upgrader,
+        RoleType.repairer]
+            .forEach((type) => {
+                // skip if we have spawned something already
+                if (anythingSpawned) {
+                    return;
+                }
+                // save if something was spawned
+                anythingSpawned = anythingSpawned || this.spawnType(
+                    type,
+                    Global.Amounts[type],
+                    this.room.energyAvailable,
+                    spawn);
 
-        // // builder
-        // if (!harvesterSpawned) {
-        //     builderSpawned = this.spawnBuilderAt(spawn);
-        // }
-
-        // if (!builderSpawned) {
-        //     upgraderSpawned = this.spawnUpgraderAt(spawn);
-        // }
+            });
 
         // show text
         if (spawn.spawning) {
@@ -64,9 +60,7 @@ export class Spawner {
                 { align: 'left', opacity: 0.8 });
         }
 
-        return harvesterSpawned
-            || builderSpawned
-            || upgraderSpawned;
+        return anythingSpawned;;
 
     }
 
@@ -88,7 +82,14 @@ export class Spawner {
                 spawn.spawnCreep(
                     bodyParts,
                     name,
-                    { memory: { role: type } });
+                    {
+                        memory:
+                        {
+                            role: type,
+                            working: false,
+                        }
+                    }
+                );
                 this.memory.spawnIndex[type] = index + 1;
                 return true;
             } else {
@@ -167,9 +168,10 @@ export class Spawner {
             case RoleType.harvester:
             case RoleType.builder:
             case RoleType.upgrader:
+            case RoleType.repairer:
                 ratio[MOVE] = 2;
-                ratio[CARRY] = 3;
-                ratio[WORK] = 3;
+                ratio[CARRY] = 2;
+                ratio[WORK] = 2;
                 break;
         }
         return ratio;

@@ -5,6 +5,7 @@ import { Builder } from "unit/builder";
 import { Harvester } from "unit/harvester";
 import { Upgrader } from "unit/upgrader";
 import { BaseUnit } from "./baseUnit";
+import { Repairer } from "./repairer";
 
 /// creep.
 export class Factory {
@@ -18,6 +19,8 @@ export class Factory {
                 return new Builder(creep);
             case RoleType.upgrader:
                 return new Upgrader(creep);
+            case RoleType.repairer:
+                return new Repairer(creep);
         }
         throw Error(`Unknown creep type found: "${creep.memory.role}"`);
     }
